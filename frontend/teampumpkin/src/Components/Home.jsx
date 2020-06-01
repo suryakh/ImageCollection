@@ -1,33 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import {uploadData} from '../Redux/Actions'
+import ContributorComponent from './ContributorComponent'
+import Usercomponent from './Usercomponent'
 
 export class Home extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            image: null,
+            imageName:"",
+            imageCategory:"",
+            uploadStatus:false
+        }
     }
     render() {
         if (this.props.userStatus.loginStatus) {
             if (this.props.userStatus.userType == "contribute") {
                 return (
                     <>
-                        <div className="row">
-                            <div className="col-4">
-                                show details
-                    </div>
-                            <div className="col-8">
-                                form
-                </div>
-                        </div>
+                    <ContributorComponent />
                     </>
                 )
             }
             else {
                 return (
                     <>
-                        <div>
-                            user
-                </div>
+                    <Usercomponent />
                     </>
                 )
             }
@@ -44,7 +44,10 @@ const mapStateToProps = (state) => ({
     userStatus: state.userReducers
 })
 
-const mapDispatchToProps = {
+const mapDispatchToProps = dispatch => {
+    return {
+        uploadData: (data, token) => dispatch(uploadData(data, token))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

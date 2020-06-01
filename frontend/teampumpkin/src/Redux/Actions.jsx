@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './Action_types'
+import { LOGIN, LOGOUT ,GET_UPLOADED_DATA,REQUESTSENT ,DATA_UPLOADED} from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -12,7 +12,17 @@ const logout = () => {
         type: LOGOUT
     }
 }
-
+const gettingdata = (Data) => {
+    return {
+        type: GET_UPLOADED_DATA,
+        payload: Data
+    }
+}
+const requestSent = () => {
+    return {
+        type: REQUESTSENT
+    }
+}
 
 const loginUser = (data) => {
     return dispatch => {
@@ -49,5 +59,39 @@ const signupUser = (data) => {
     }
 }
 
+const uploadData = (data, token) => {
+    console.log(data)
+    return dispatch => {
+        dispatch(requestSent())
+        axios({
+            method: "POST",
+            url: 'http://localhost:5000/upload/data',
+            headers: {
+                'Authorization': token
+            },
+            data: data
+        })
+            .then((res) => {
+                alert("successfully updated")
+                // dispatch(dataUploaded())
+            }
+            )
+    }
+}
 
-export {loginUser,signupUser,logout}
+const getData = (token) => {
+    return dispatch => {
+        dispatch(requestSent())
+        axios({
+            method: "GET",
+            url: 'http://localhost:5000/data/imageslist',
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then((res) => dispatch(gettingdata(res.data)))
+    }
+}
+
+
+export {loginUser,signupUser,logout,uploadData,getData}
