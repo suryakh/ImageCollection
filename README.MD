@@ -21,11 +21,17 @@ Contributor Home page:
 
 Normal User Home page:
 
+pagination:
+
+page1:
+
 ![pagination1](https://github.com/suryakh/TeamPumpkinAssignment/blob/master/screenshots/pagination1.png)
 
+page2:
 
 ![pagination2](https://github.com/suryakh/TeamPumpkinAssignment/blob/master/screenshots/pagination2.png)
 
+page3:
 
 ![pagination3](https://github.com/suryakh/TeamPumpkinAssignment/blob/master/screenshots/pagination3.png)
 
@@ -35,7 +41,7 @@ Filtering :
 
 contributor Details:
 
-![Contributerdetails]https://github.com/suryakh/TeamPumpkinAssignment/blob/master/screenshots/Contributor%20details.png)
+![Contributerdetails](https://github.com/suryakh/TeamPumpkinAssignment/blob/master/screenshots/Contributor%20details.png)
 
 Popup to Download:
 
