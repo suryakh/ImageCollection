@@ -1,0 +1,64 @@
++-----------------------+
+| Tables_in_teamPumpkin |
++-----------------------+
+| imagesData            |
+| users                 |
++-----------------------+
+
+Users table:
+
+Description:
+
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username      | varchar(255) | YES  |     | NULL    |                |
+| email         | varchar(255) | YES  |     | NULL    |                |
+| salt          | varchar(255) | YES  |     | NULL    |                |
+| password_hash | varchar(255) | YES  |     | NULL    |                |
+| usertype      | varchar(255) | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+
+
++----+----------+-----------------+--------------------------+----------------------------------+-------------+
+| id | username | email           | salt                     | password_hash                    | usertype    |
++----+----------+-----------------+--------------------------+----------------------------------+-------------+
+|  1 | user1    | user1@gmail.com | yY4pUXk4UcPB1jVJ2bYBAg== | c947cc1d4e9403aaa1f450e72583b80e | Contributor |
+|  2 | user2    | user2@gmail.com | UdFRvDUOicP5LPauanIV1Q== | db309a3e5142e4e0e854588c77d31ed4 | User        |
+|  3 | user3    | user3@gmail.com | nWIaYK6dam7U/9t6q4/YjA== | 3c64c7a1b1738a24a07f5b575161b80f | Contributor |
++----+----------+-----------------+--------------------------+----------------------------------+-------------+
+
+imagesData table:
+
+Description :
+
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+| imagename     | varchar(255) | YES  |     | NULL    |                |
+| imagepath     | varchar(255) | YES  |     | NULL    |                |
+| imagecategory | varchar(255) | YES  |     | NULL    |                |
+| userid        | int(11)      | YES  | MUL | NULL    |                |
+| downloads     | int(11)      | YES  |     | 0       |                |
++---------------+--------------+------+-----+---------+----------------+
+
+
++----+-------------+----------------+---------------+--------+-----------+
+| id | imagename   | imagepath      | imagecategory | userid | downloads |
++----+-------------+----------------+---------------+--------+-----------+
+|  1 | webpicture  | web.png        | Technology    |      1 |         8 |
+|  3 | newtest     | FinishTask.png | Technology    |      1 |         7 |
+|  4 | test3       | image (1).png  | Quotes        |      1 |         3 |
+|  5 | test4       | CreateTask.png | Technology    |      3 |         0 |
+|  6 | Nature1     | nature1.jpeg   | Nature        |      3 |         0 |
+|  7 | Painting    | paint.jpeg     | Flowers       |      3 |         0 |
+|  8 | animals     | animal1.jpeg   | Animals       |      3 |         1 |
+|  9 | painting2   | paint2.jpeg    | Nature        |      1 |         0 |
+| 10 | Animalimage | animal2.jpeg   | Animals       |      1 |         1 |
+| 11 | Tech1       | Computers.jpeg | Technology    |      1 |         0 |
+| 12 | Ocean       | ocean.jpg      | Animals       |      1 |         1 |
+| 13 | Tech2       | leranit.jpeg   | Technology    |      3 |         0 |
+| 14 | Ocean2      | ocean2.jpeg    | Animals       |      3 |         0 |
++----+-------------+----------------+---------------+--------+-----------+

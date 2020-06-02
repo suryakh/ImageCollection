@@ -1,0 +1,12 @@
+login.jsx
+    |
+    |___Home.jsx
+        |  |
+        |  |_____ ContributorComponent.jsx
+        |              |
+        |              |______Contributordata.jsx
+        |
+        |_________Usercomponent.jsx
+                        |
+                        |_____Imagecomponent.jsx
+signup.jsx

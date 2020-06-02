@@ -37,7 +37,7 @@ const increamentCount = (id) => {
     }
 }
 
-//  Request for UserLogin
+//  Request to UserLogin
 
 const loginUser = (data) => {
     return dispatch => {
@@ -56,7 +56,7 @@ const loginUser = (data) => {
     };
 }
 
-// Request for user signup
+// Request to user signup
 
 const signupUser = (data) => {
     return dispatch => {
@@ -74,7 +74,7 @@ const signupUser = (data) => {
     }
 }
 
-//Request for upload images 
+//Request to upload images 
 
 const uploadData = (data, token) => {
     console.log(data)
@@ -95,7 +95,7 @@ const uploadData = (data, token) => {
     }
 }
 
-// Request for get imagesdata 
+// Request to get images data 
 
 const getImagesData = (count, offset, category, token) => {
     return dispatch => {

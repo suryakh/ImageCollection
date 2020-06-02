@@ -51,7 +51,7 @@ export class Usercomponent extends Component {
                 <div className="container">
                     <div className="text-center">
                         <select className="btn btn-primary" name="imageCategory" value={this.state.imageCategory} onChange={this.handleChange} onClick={() => this.setData()}>
-                            <option></option>
+                            <option value="All">select category</option>
                             <option value="Technology">Technology</option>
                             <option value="Nature">Nature</option>
                             <option value="Flowers">Flowers</option>
@@ -60,7 +60,7 @@ export class Usercomponent extends Component {
                             <option value="Quotes">Quotes</option>
                         </select>
                     </div>
-                    <div className="row m-4">
+                    <div className="row m-4" style={{height:"700px"}}>
                         {this.props.data.requestStatus && this.props.data.userData.map((ele) => <div key={ele.id} className="col-3"><div className="m-1 border shadow p-3"><div><img style={{ height: "200px" }} onClick={() => this.popUpData(ele)} className="img-fluid" src={`http://localhost:5000/static/${ele.imagepath}`} /></div>
 
                             <div><b>ImageName: </b>{ele.imagename}</div>
