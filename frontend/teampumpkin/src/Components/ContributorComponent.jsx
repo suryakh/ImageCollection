@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { uploadData } from '../Redux/Actions'
 import Contrubtordata from './Contributordata'
-import { Redirect } from 'react-router-dom'
 
 export class ContributorComponent extends Component {
     constructor(props) {
