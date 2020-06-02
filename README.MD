@@ -59,3 +59,17 @@ Dependencies:
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
+
+For backend:
+
+    FLASK,
+
+    MySQL Database
+
+For frontend:
+
+    React.js,
+
+    React-Redux,
+    
+    Bootstrap
