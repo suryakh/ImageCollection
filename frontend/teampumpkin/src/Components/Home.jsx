@@ -17,17 +17,25 @@ export class Home extends Component {
     }
     render() {
         if (this.props.userStatus.loginStatus) {
-            if (this.props.userStatus.userType == "contribute") {
+            if (this.props.userStatus.userType == "Contributor") {
                 return (
                     <>
-                        <ContributorComponent />
+                        <div className="container-fluid">
+                            <div className="container">
+                                <h4>Loggedin as a {this.props.userStatus.userType}</h4>
+                            </div>
+                            <ContributorComponent />
+                        </div>
                     </>
                 )
             }
             else {
                 return (
                     <>
-                        <Usercomponent />
+                        <div className="container">
+                            <h4>Loggedin as a {this.props.userStatus.userType}</h4>
+                            <Usercomponent />
+                        </div>
                     </>
                 )
             }

@@ -18,7 +18,7 @@ def imageslist():
     encoded_Data = token.split(' ')[0]
     print(category)
     try:
-        decode_data = jwt.decode(encoded_Data, 'users', algorithms=['HS256'])
+        jwt.decode(encoded_Data, 'users', algorithms=['HS256'])
         if category == "All":
             cursor = mysql.connection.cursor()
             cursor.execute(
@@ -62,7 +62,7 @@ def downloadImage(id):
     token = request.headers.get('Authorization')
     encoded_Data = token.split(' ')[0]
     try:
-        decode_data = jwt.decode(encoded_Data, 'users', algorithms=['HS256'])
+        jwt.decode(encoded_Data, 'users', algorithms=['HS256'])
         cursor = mysql.connection.cursor()
         cursor.execute(
             """SELECT imagesData.*,users.username FROM imagesData LEFT JOIN users ON imagesData.userid = users.id where imagesData.id = %s""", (
@@ -77,7 +77,7 @@ def downloadImage(id):
         )
         mysql.connection.commit()
         cursor.close()
-        return "sdfasd"
+        return json.dumps({"message":imagepath})
     except:
         return json.dumps({"message": "error"}), 400
 
@@ -97,16 +97,14 @@ def contributerData():
         )
         results = cursor.fetchall()
         cursor.execute(
-            """select count(*) as totalcount from imagesData where userid = %s""", (
+            """SELECT COUNT(*) AS totalcount FROM imagesData WHERE userid = %s""", (
                 decode_data['id'],)
         )
         result = cursor.fetchone()
-        print(result)
         cursor.close()
         contributorData = []
         for ele in results:
             contributorData.append(ele)
-        print(count, endpoint)
         totalpages = math.ceil(float(result['totalcount'] / float(count)))
 
         return jsonify({"totalpages": totalpages, "contributorData": contributorData})

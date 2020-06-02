@@ -1,5 +1,5 @@
 
-import { LOGIN, LOGOUT, GET_UPLOADED_DATA, REQUESTSENT, DATA_UPLOADED, DOWNLOAD_INC, GET_CONTRIBUTOR } from './Action_types'
+import { LOGIN, LOGOUT, GET_UPLOADED_DATA, REQUESTSENT, DOWNLOAD_INC, GET_CONTRIBUTOR } from './Action_types'
 
 let initialState = {
     loginStatus: false,
@@ -62,13 +62,6 @@ const dataReducers = (state = datastate, action) => {
                 userData: action.payload.imageList,
                 requestStatus: true,
                 imgBtnList: templist,
-                dataUploaded: false
-            }
-        }
-        case DATA_UPLOADED: {
-            return {
-                ...state,
-                requestStatus: true,
                 dataUploaded: false
             }
         }

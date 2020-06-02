@@ -64,8 +64,8 @@ export class Signup extends Component {
                         <div className="col-12 text-center m-2">
                             <select name="userType" className="btn btn-primary" value={this.state.userType} onChange={this.handleChange}>
                                 <option>Select User type</option>
-                                <option value="normalUser">User</option>
-                                <option value="contribute">Contributor</option>
+                                <option value="User">User</option>
+                                <option value="Contributor">Contributor</option>
                             </select>
                         </div>
                         <div className="col-12 text-center m-4">

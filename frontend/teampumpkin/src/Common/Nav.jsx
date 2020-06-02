@@ -30,10 +30,10 @@ export class Nav extends Component {
                                     {!this.props.userStatus.loginStatus && <div className="col-3"> <Link to='/login'><button className="btn btn-light">Login</button></Link></div>}
                                 </li>
                                 <li className="nav-item">
-                                    <div className="col-3"><Link to='/Signup'><button className="btn btn-light">Signup</button></Link></div>
+                                    {!this.props.userStatus.loginStatus && <div className="col-3"><Link to='/Signup'><button className="btn btn-light">Signup</button></Link></div>}
                                 </li>
-                                <li className="nav-item col-3">
-                                    {this.props.userStatus.loginStatus && <div className='row'><button className="btn btn-light "><FontAwesomeIcon icon={faUser} />{this.props.userStatus.user}</button></div>}
+                                <li className="nav-item col-5">
+                                    {this.props.userStatus.loginStatus && <div><button className="btn btn-light "><FontAwesomeIcon icon={faUser} />{this.props.userStatus.user}</button></div>}
                                 </li>
                                 <li className="nav-item">
                                     {this.props.userStatus.loginStatus && <div className="col-3"><button className="btn btn-light" onClick={() => this.handleClick()}>Logout</button></div>}

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, GET_UPLOADED_DATA, REQUESTSENT, DATA_UPLOADED, DOWNLOAD_INC, GET_CONTRIBUTOR } from './Action_types'
+import { LOGIN, LOGOUT, GET_UPLOADED_DATA, REQUESTSENT, DOWNLOAD_INC, GET_CONTRIBUTOR } from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -37,6 +37,8 @@ const increamentCount = (id) => {
     }
 }
 
+//  Request for UserLogin
+
 const loginUser = (data) => {
     return dispatch => {
         axios({
@@ -54,7 +56,7 @@ const loginUser = (data) => {
     };
 }
 
-// request for user signup
+// Request for user signup
 
 const signupUser = (data) => {
     return dispatch => {
@@ -72,6 +74,8 @@ const signupUser = (data) => {
     }
 }
 
+//Request for upload images 
+
 const uploadData = (data, token) => {
     console.log(data)
     return dispatch => {
@@ -86,13 +90,14 @@ const uploadData = (data, token) => {
         })
             .then((res) => {
                 alert("successfully updated")
-                // dispatch(dataUploaded())
             }
             )
     }
 }
 
-const getData = (count, offset, category, token) => {
+// Request for get imagesdata 
+
+const getImagesData = (count, offset, category, token) => {
     return dispatch => {
         dispatch(requestSent())
         axios({
@@ -143,4 +148,4 @@ const getContrubutorData = (count, offset, token) => {
     }
 }
 
-export { loginUser, signupUser, logout, uploadData, getData, downloadImage, getContrubutorData }
+export { loginUser, signupUser, logout, uploadData, getImagesData, downloadImage, getContrubutorData }

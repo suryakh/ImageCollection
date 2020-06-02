@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getData } from '../Redux/Actions'
-import { Link } from 'react-router-dom'
+import { getImagesData } from '../Redux/Actions'
 import Imagecomponent from './Imagecomponent'
 
 export class Usercomponent extends Component {
@@ -14,13 +13,16 @@ export class Usercomponent extends Component {
             imageCategory: ""
         }
     }
-    getdata(data) {
+    // For popup Model
+    popUpData(data) {
         let temp = data
         this.setState({
             data: temp,
             show: true,
         })
     }
+
+    // For closing popup Model
     hideIt = () => {
         this.setState({
             show: false
@@ -33,40 +35,43 @@ export class Usercomponent extends Component {
     }
     componentDidMount() {
         let offset = 0
-        this.props.getData(this.state.count, offset, this.state.imageCategory || "All", this.props.userStatus.token)
+        this.props.getImagesData(this.state.count, offset, this.state.imageCategory || "All", this.props.userStatus.token)
     }
+    // pagination 
+
     setData = (ele) => {
         let offset = (ele - 1) * this.state.count
-        this.props.getData(this.state.count, offset || 0, this.state.imageCategory || "All", this.props.userStatus.token)
+        this.props.getImagesData(this.state.count, offset || 0, this.state.imageCategory || "All", this.props.userStatus.token)
     }
 
 
     render() {
-        console.log(this.props.data)
         return (
             <>
                 <div className="container">
-                    <select name="imageCategory" value={this.state.imageCategory} onChange={this.handleChange} onClick={() => this.setData()}>
-                        <option></option>
-                        <option value="Technology">Technology</option>
-                        <option value="Nature">Nature</option>
-                        <option value="Flowers">Flowers</option>
-                        <option value="Birds">Birds</option>
-                        <option value="Animals">Animals</option>
-                        <option value="Quotes">Quotes</option>
-                    </select>
+                    <div className="text-center">
+                        <select className="btn btn-primary" name="imageCategory" value={this.state.imageCategory} onChange={this.handleChange} onClick={() => this.setData()}>
+                            <option></option>
+                            <option value="Technology">Technology</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Flowers">Flowers</option>
+                            <option value="Birds">Birds</option>
+                            <option value="Animals">Animals</option>
+                            <option value="Quotes">Quotes</option>
+                        </select>
+                    </div>
                     <div className="row m-4">
-                        {this.props.data.requestStatus && this.props.data.userData.map((ele) => <div className="col-3"><div className="m-1 border shadow p-3"><div><img style={{ height: "200px" }} onClick={() => this.getdata(ele)} className="img-fluid" src={`http://localhost:5000/static/${ele.imagepath}`} /></div>
+                        {this.props.data.requestStatus && this.props.data.userData.map((ele) => <div key={ele.id} className="col-3"><div className="m-1 border shadow p-3"><div><img style={{ height: "200px" }} onClick={() => this.popUpData(ele)} className="img-fluid" src={`http://localhost:5000/static/${ele.imagepath}`} /></div>
 
-                            <div>{ele.imagename}</div>
-                            <div>{ele.username}</div>
-                            <div>{ele.downloads}</div>
+                            <div><b>ImageName: </b>{ele.imagename}</div>
+                            <div><b>Contributor: </b>{ele.username}</div>
+                            <div><b>No.of Downloads: </b>{ele.downloads}</div>
                         </div></div>)}
                     </div>
                     <Imagecomponent show={this.state.show} data={this.state.data} hide={this.hideIt} />
                 </div>
                 <div className="text-center">
-                    {this.props.data.requestStatus && this.props.data.imgBtnList.map((ele) => <button className="btn btn-primary" onClick={() => this.setData(ele)}>{ele}</button>)}
+                    {this.props.data.requestStatus && this.props.data.imgBtnList.map((ele) => <button key={ele} className="btn btn-primary m-2" onClick={() => this.setData(ele)}>{ele}</button>)}
                 </div>
             </>
         )
@@ -80,7 +85,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        getData: (count, offset, category, token) => dispatch(getData(count, offset, category, token))
+        getImagesData: (count, offset, category, token) => dispatch(getImagesData(count, offset, category, token))
     }
 }
 

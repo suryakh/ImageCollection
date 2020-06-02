@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../App.css'
 import { downloadImage } from '../Redux/Actions'
-import { Link } from 'react-router-dom'
 
 export class Imagecomponent extends Component {
     constructor(props) {
@@ -14,6 +13,7 @@ export class Imagecomponent extends Component {
     download() {
 
         this.props.downloadImage(this.props.data.id, this.props.userStatus.token)
+        this.props.hide()
         window.open(`http://localhost:5000/static/${this.props.data.imagepath}`, "Download")
     }
     render() {
@@ -22,15 +22,18 @@ export class Imagecomponent extends Component {
             <>
                 {this.props.show && <div className="model"> <div className="col-12"><div><img className="img-fluid" style={{ height: "400px" }} src={`http://localhost:5000/static/${this.props.data.imagepath}`} /></div>
 
-                    <div>{this.props.data.imagename}</div>
-                    <div>{this.props.data.username}</div>
-                    {/* <div>{this.props.data.downloads}</div> */}
+                    <div><b>ImageName</b>{this.props.data.imagename}</div>
+                    <div><b>Contributor</b>{this.props.data.username}</div>
+                    <div><b>No.of Downloads</b>{this.props.data.downloads}</div>
                 </div>
-                    <button onClick={this.props.hide}>Close</button>
-                    <button onClick={() => this.download()}>Download</button>
+                    <div className="text-center">
+                        <button className="btn btn-danger mr-2" onClick={this.props.hide}>Close</button>
+                        <button className="btn btn-success" onClick={() => this.download()}>Download</button>
+                    </div>
                 </div>}
             </>
         )
+
     }
 }
 
