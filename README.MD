@@ -1,7 +1,7 @@
 Image Collection
 
-    User can signup as a normal user/contributor,if he login as a contributor he can upload a image to the server,get details about his activities.
-    if he logged in as a normal user he can download the images from the webpage.
+    User can signup as a normal user/contributor,if he logged in as a contributor he can upload an image to the server,get details about his activities.
+    If he logged in as a normal user he can download the images from the webpage.
 
 
 Screen Shots:
