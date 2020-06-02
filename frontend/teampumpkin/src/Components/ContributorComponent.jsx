@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {uploadData} from '../Redux/Actions'
+import { uploadData } from '../Redux/Actions'
+import Contrubtordata from './Contrubtordata'
 
 export class ContributorComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
             image: null,
-            imageName:"",
-            imageCategory:"",
-            uploadStatus:false
+            imageName: "",
+            imageCategory: "",
+            uploadStatus: false,
+            showDetails: false
         }
     }
     fileLoad = (e) => {
@@ -18,58 +20,66 @@ export class ContributorComponent extends Component {
             uploadStatus: true
         })
     }
-    handleChange= (e)=>{
+    handleChange = (e) => {
         this.setState({
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
+        })
+    }
+    showdetails = () => {
+        this.setState({
+            showDetails: !this.state.showDetails
         })
     }
     fileUpload = () => {
-            let formdata = new FormData()
-            formdata.append("image", this.state.image)
-            formdata.append("imageName",this.state.imageName)
-            formdata.append("imageCategory",this.state.imageCategory)
-            this.props.uploadData(formdata, this.props.userStatus.token)
-            this.setState({
-                uploadStatus: false
-            })
+        let formdata = new FormData()
+        formdata.append("image", this.state.image)
+        formdata.append("imageName", this.state.imageName)
+        formdata.append("imageCategory", this.state.imageCategory)
+        this.props.uploadData(formdata, this.props.userStatus.token)
+        this.setState({
+            uploadStatus: false
+        })
     }
     render() {
         return (
             <>
                 <div className="row">
-                            <div className="col-4">
-                                show details
+                    <div className="col-4">
+                        <button onClick={this.showdetails}>showDetails</button>
                     </div>
-                            <div className="col-8">
-                            <div className="input-group">
-                                <div>
-                                    <input name="imageName" type="text" value={this.state.imageName} onChange={this.handleChange}/>
-                                </div>
+                    {!this.state.showDetails && <div className="col-8">
+                        <div className="input-group">
+                            <div>
+                                <input name="imageName" type="text" value={this.state.imageName} onChange={this.handleChange} />
+                            </div>
                             <div className="custom-file">
                                 <input type="file" class="custom-file-input" id="file" onChange={this.fileLoad} />
                                 <label className="custom-file-label">Choose file</label>
                             </div>
-                        <div className="m-4">
-                            {this.state.uploadStatus && <h4>Selected file name : {this.state.image.name}</h4>}
-                        </div>
-                        <div>
-                            <select name="imageCategory" value={this.state.imageCategory} onChange={this.handleChange}>
-                                <option></option>
-                                <option value="Technology">Technology</option>
-                                <option value="Nature">Nature</option>
-                                <option value="Flowers">Flowers</option>
-                                <option value="Birds">Birds</option>
-                                <option value="Animals">Animals</option>
-                                <option value="Quotes">Quotes</option>
-                            </select>
-                        </div>
-                        </div>
-                            <div className="input-group-append">
-                                <button className="btn btn-outline-success" type="button" onClick={() => this.fileUpload()} >Upload</button>
+                            <div className="m-4">
+                                {this.state.uploadStatus && <h4>Selected file name : {this.state.image.name}</h4>}
                             </div>
-                </div>
+                            <div>
+                                <select name="imageCategory" value={this.state.imageCategory} onChange={this.handleChange}>
+                                    <option></option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Flowers">Flowers</option>
+                                    <option value="Birds">Birds</option>
+                                    <option value="Animals">Animals</option>
+                                    <option value="Quotes">Quotes</option>
+                                </select>
+                            </div>
                         </div>
-                
+                        <div className="input-group-append">
+                            <button className="btn btn-outline-success" type="button" onClick={() => this.fileUpload()} >Upload</button>
+                        </div>
+                    </div>}
+                    {this.state.showDetails && <div className="container">
+                        <Contrubtordata />
+                    </div>}
+                </div>
+
             </>
         )
     }

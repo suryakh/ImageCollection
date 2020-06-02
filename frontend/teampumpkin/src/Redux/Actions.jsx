@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT ,GET_UPLOADED_DATA,REQUESTSENT ,DATA_UPLOADED} from './Action_types'
+import { LOGIN, LOGOUT, GET_UPLOADED_DATA, REQUESTSENT, DATA_UPLOADED, DOWNLOAD_INC, GET_CONTRIBUTOR } from './Action_types'
 import axios from 'axios'
 
 const login = (data) => {
@@ -21,6 +21,19 @@ const gettingdata = (Data) => {
 const requestSent = () => {
     return {
         type: REQUESTSENT
+    }
+}
+const contributors = (data) => {
+    return {
+        type: GET_CONTRIBUTOR,
+        payload: data
+    }
+}
+
+const increamentCount = (id) => {
+    return {
+        type: DOWNLOAD_INC,
+        payload: id
     }
 }
 
@@ -79,12 +92,17 @@ const uploadData = (data, token) => {
     }
 }
 
-const getData = (token) => {
+const getData = (count, offset, category, token) => {
     return dispatch => {
         dispatch(requestSent())
         axios({
             method: "GET",
             url: 'http://localhost:5000/data/imageslist',
+            params: {
+                count: count,
+                offset: offset,
+                category: category
+            },
             headers: {
                 'Authorization': token
             }
@@ -93,5 +111,36 @@ const getData = (token) => {
     }
 }
 
+const downloadImage = (id, token) => {
+    console.log(id, token)
+    return dispatch => {
+        axios({
+            method: "GET",
+            url: `http://localhost:5000/data/download/${id}`,
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then((res) => dispatch(increamentCount(id)))
+    }
+}
 
-export {loginUser,signupUser,logout,uploadData,getData}
+const getContrubutorData = (count, offset, token) => {
+    return dispatch => {
+        dispatch(requestSent())
+        axios({
+            method: "GET",
+            url: 'http://localhost:5000/data/contributor',
+            params: {
+                count: count,
+                offset: offset,
+            },
+            headers: {
+                'Authorization': token
+            }
+        })
+            .then((res) => dispatch(contributors(res.data)))
+    }
+}
+
+export { loginUser, signupUser, logout, uploadData, getData, downloadImage, getContrubutorData }

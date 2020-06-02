@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import {uploadData} from '../Redux/Actions'
+import { uploadData } from '../Redux/Actions'
 import ContributorComponent from './ContributorComponent'
 import Usercomponent from './Usercomponent'
 
@@ -10,9 +10,9 @@ export class Home extends Component {
         super(props)
         this.state = {
             image: null,
-            imageName:"",
-            imageCategory:"",
-            uploadStatus:false
+            imageName: "",
+            imageCategory: "",
+            uploadStatus: false
         }
     }
     render() {
@@ -20,14 +20,14 @@ export class Home extends Component {
             if (this.props.userStatus.userType == "contribute") {
                 return (
                     <>
-                    <ContributorComponent />
+                        <ContributorComponent />
                     </>
                 )
             }
             else {
                 return (
                     <>
-                    <Usercomponent />
+                        <Usercomponent />
                     </>
                 )
             }

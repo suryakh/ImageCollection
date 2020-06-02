@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../App.css'
-import FileSaver from 'file-saver'
+import { downloadImage } from '../Redux/Actions'
+import { Link } from 'react-router-dom'
 
 export class Imagecomponent extends Component {
     constructor(props) {
@@ -11,32 +12,36 @@ export class Imagecomponent extends Component {
         }
     }
     download() {
-        FileSaver.saveAs(`{http://localhost:5000/static/${this.props.data.imagepath}`,"image.png")
-      }
+
+        this.props.downloadImage(this.props.data.id, this.props.userStatus.token)
+        window.open(`http://localhost:5000/static/${this.props.data.imagepath}`, "Download")
+    }
     render() {
         console.log(this.props.data)
         return (
             <>
-                {this.props.show &&<div className="model"> <div className="col-4"><div><img className="img-fluid" src={`http://localhost:5000/static/${this.props.data.imagepath}`} /></div>
+                {this.props.show && <div className="model"> <div className="col-12"><div><img className="img-fluid" style={{ height: "400px" }} src={`http://localhost:5000/static/${this.props.data.imagepath}`} /></div>
 
                     <div>{this.props.data.imagename}</div>
                     <div>{this.props.data.username}</div>
-                    <div>{this.props.data.downloads}</div>
+                    {/* <div>{this.props.data.downloads}</div> */}
                 </div>
-                <button onClick={this.props.hide}>Close</button>
-                <button onClick={()=>this.download()}>Download</button>
-            </div>}
+                    <button onClick={this.props.hide}>Close</button>
+                    <button onClick={() => this.download()}>Download</button>
+                </div>}
             </>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-
+    userStatus: state.userReducers
 })
 
-const mapDispatchToProps = {
-
+const mapDispatchToProps = dispatch => {
+    return {
+        downloadImage: (id, token) => dispatch(downloadImage(id, token))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Imagecomponent)

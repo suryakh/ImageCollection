@@ -1,5 +1,7 @@
 .model {
     position: fixed;
+    height: 500px;
+    width: 500px;
     top: 10%;
     right: 10%;
     bottom: 10%;
