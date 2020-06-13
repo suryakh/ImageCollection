@@ -43,7 +43,7 @@ const loginUser = (data) => {
     return dispatch => {
         axios({
             method: 'POST',
-            url: 'http://localhost:5000/auth/login',
+            url: 'https://imagecollections.herokuapp.com/auth/login',
             data: data
         })
             .then(res => {
@@ -62,7 +62,7 @@ const signupUser = (data) => {
     return dispatch => {
         axios({
             method: "POST",
-            url: "http://localhost:5000/auth/signup",
+            url: "https://imagecollections.herokuapp.com/auth/signup",
             data: data,
         })
             .then((res) => {
@@ -82,7 +82,7 @@ const uploadData = (data, token) => {
         dispatch(requestSent())
         axios({
             method: "POST",
-            url: 'http://localhost:5000/upload/data',
+            url: 'https://imagecollections.herokuapp.com/upload/data',
             headers: {
                 'Authorization': token
             },
@@ -102,7 +102,7 @@ const getImagesData = (count, offset, category, token) => {
         dispatch(requestSent())
         axios({
             method: "GET",
-            url: 'http://localhost:5000/data/imageslist',
+            url: 'https://imagecollections.herokuapp.com/data/imageslist',
             params: {
                 count: count,
                 offset: offset,
@@ -121,7 +121,7 @@ const downloadImage = (id, token) => {
     return dispatch => {
         axios({
             method: "GET",
-            url: `http://localhost:5000/data/download/${id}`,
+            url: `https://imagecollections.herokuapp.com/data/download/${id}`,
             headers: {
                 'Authorization': token
             }
@@ -135,7 +135,7 @@ const getContrubutorData = (count, offset, token) => {
         dispatch(requestSent())
         axios({
             method: "GET",
-            url: 'http://localhost:5000/data/contributor',
+            url: 'https://imagecollections.herokuapp.com/data/contributor',
             params: {
                 count: count,
                 offset: offset,

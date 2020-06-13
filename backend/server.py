@@ -7,9 +7,10 @@ from flask_mysqldb import MySQL
 app = Flask(__name__,static_url_path="/static")
 mysql = MySQL(app)
 CORS(app)
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '$uryA11472'
-app.config['MYSQL_DB'] = 'teamPumpkin'
+app.config['MYSQL_HOST'] = 'us-cdbr-east-05.cleardb.net'
+app.config['MYSQL_USER'] = 'bca7c8f7c7a205'
+app.config['MYSQL_PASSWORD'] = '3e359f4f'
+app.config['MYSQL_DB'] = 'heroku_b9209152872b2b0'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 @app.route('/return-files/')

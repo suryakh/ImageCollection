@@ -60,8 +60,8 @@ export class Usercomponent extends Component {
                             <option value="Quotes">Quotes</option>
                         </select>
                     </div>
-                    <div className="row m-4" style={{height:"700px"}}>
-                        {this.props.data.requestStatus && this.props.data.userData.map((ele) => <div key={ele.id} className="col-3"><div className="m-1 border shadow p-3"><div><img style={{ height: "200px" }} onClick={() => this.popUpData(ele)} className="img-fluid" src={`http://localhost:5000/static/${ele.imagepath}`} /></div>
+                    <div className="row m-4" style={{height:"600px"}}>
+                        {this.props.data.requestStatus && this.props.data.userData.map((ele) => <div key={ele.id} className="col-3"><div className="m-1 border shadow p-3"><div><img style={{ height: "200px" }} onClick={() => this.popUpData(ele)} className="img-fluid" src={`https://imagecollections.herokuapp.com/static/${ele.imagepath}`} /></div>
 
                             <div><b>ImageName: </b>{ele.imagename}</div>
                             <div><b>Contributor: </b>{ele.username}</div>

@@ -14,13 +14,13 @@ export class Imagecomponent extends Component {
 
         this.props.downloadImage(this.props.data.id, this.props.userStatus.token)
         this.props.hide()
-        window.open(`http://localhost:5000/static/${this.props.data.imagepath}`, "Download")
+        window.open(`https://imagecollections.herokuapp.com/static/${this.props.data.imagepath}`, "Download")
     }
     render() {
         console.log(this.props.data)
         return (
             <>
-                {this.props.show && <div className="model"> <div className="col-12"><div><img className="img-fluid" style={{ height: "400px" }} src={`http://localhost:5000/static/${this.props.data.imagepath}`} /></div>
+                {this.props.show && <div className="model"> <div className="col-12"><div><img className="img-fluid" style={{ height: "400px" }} src={`https://imagecollections.herokuapp.com/static/${this.props.data.imagepath}`} /></div>
 
                     <div><b>ImageName</b>{this.props.data.imagename}</div>
                     <div><b>Contributor</b>{this.props.data.username}</div>
